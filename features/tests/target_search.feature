@@ -7,3 +7,9 @@ Feature: Tests for Target Search functionality
     When User searches for tea in search bar
     And User clicks search button
     Then Search Results displays tea name
+
+  Scenario: Search results screen provides product name and image
+    Given Open Target.com
+    When User searches for tea in search bar
+    And User clicks search button
+    Then Verify every product has image and name
