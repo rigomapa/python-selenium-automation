@@ -11,7 +11,7 @@ Feature: Tests for cart functionality
     Given Open Target.com
     When User searches for tea in search bar
     And User clicks search button
-    And User clicks Add to cart button
+    And User clicks Add to cart button in results
     And User clicks Add to cart button in side panel
     And User presses View cart & check out button
     Then Cart screen contains item
