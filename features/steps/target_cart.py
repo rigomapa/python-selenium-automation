@@ -4,19 +4,17 @@ from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
 
-CART_BTN = By.XPATH, "//*[@data-test='@web/CartIcon']"
 SEARCH_RESULTS = By.CSS_SELECTOR, '[data-test="@web/SlotRenderer"]'
 ADD_TO_CART_SEARCH = By.CSS_SELECTOR, '[id*=addToCartButton]'
 ADD_TO_CART_SIDE_PNL = By.CSS_SELECTOR, '[data-test="orderPickupButton"][id*=addToCartButton]'
 VIEW_AND_CHECKOUT_BTN = By.CSS_SELECTOR, '[href="/cart"]'
-EMPTY_CART_HEADER = By.XPATH, "//*[text()='Your cart is empty']"
 CART_ITEM = By.CSS_SELECTOR, '[data-test="cartItem"]'
 PRODUCT_NAME_SIDE_PANEL = By.CSS_SELECTOR, "h4"
 
 
 @when("User presses Cart button")
 def press_cart(context):
-    context.driver.find_element(*CART_BTN).click()
+    context.app.header.click_cart_button()
 
 
 @when('User clicks Add to cart button')
@@ -36,11 +34,9 @@ def press_cart_checkout(context):
     context.driver.find_element(*VIEW_AND_CHECKOUT_BTN).click()
 
 
-@then("Verify 'My Cart' window is displayed")
+@then("Verify 'Your cart is empty' is displayed")
 def verify_cart(context):
-    actual_result = context.driver.find_element(*EMPTY_CART_HEADER).text
-    expected_result = "Your cart is empty"
-    assert actual_result == expected_result, f"Expected '{expected_result}', got '{actual_result}'"
+    context.app.cart_page.verify_cart_empty()
 
 
 @then('Cart screen contains item')

@@ -5,7 +5,7 @@ Feature: Tests for cart functionality
   Scenario: Cart screen is opened when cart button is selected
     Given Open Target.com
     When User presses Cart button
-    Then Verify 'My Cart' window is displayed
+    Then Verify 'Your cart is empty' is displayed
 
   Scenario: User can add items to cart
     Given Open Target.com

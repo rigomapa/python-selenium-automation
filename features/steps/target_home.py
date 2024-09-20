@@ -15,23 +15,22 @@ ITEM_NAME = By.CSS_SELECTOR, '[data-test="product-title"]'
 
 @given("Open Target.com")
 def open_target_com(context):
-    context.driver.get(TARGET_URL)
+    context.app.main_page.open_main()
 
 
 @when("User searches for {item} in search bar")
 def user_searches(context, item):
-    context.driver.find_element(*SEARCHBAR).send_keys(item)
+    context.app.header.type_searchbar(item)
 
 
 @when('User clicks search button')
 def click_search_button(context):
-    context.driver.find_element(*SEARCH_BTN).click()
+    context.app.header.click_search_button()
 
 
 @then("Search Results displays {item} name")
 def check_item_name(context, item):
-    actual_result = context.driver.find_element(*ITEM_NAME_RESULTS).text
-    assert item in actual_result, f"Item name '{item}' not found in search results."
+    context.app.search_results_page.verify_results(item)
 
 
 @then("Verify every product has image and name")
