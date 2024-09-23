@@ -16,3 +16,14 @@ Feature: Tests for sign in functionality
     And User enters Password
     And User presses Sing In button in Sign In form
     Then Verify Sign In form disappears
+
+  Scenario: User can open and close Terms and Conditions from Sign In page
+    # Given open Sign In page - Sign in URL not working
+    Given Open Target.com
+    When User presses Sign In button
+    And User presses Sing In button on expanding panel
+    And store original window
+    And click on target Terms and Conditions link
+    And switch to newly opened window
+    Then verify Terms and Conditions page is opened
+    And user can close new window and switch back to original

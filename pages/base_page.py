@@ -26,6 +26,20 @@ class Page:
     def input_text(self, *locator, text):
         self.driver.find_element(*locator).send_keys(text)
 
+    def get_current_window(self):
+        return self.driver.current_window_handle
+
+    def switch_to_new_window(self):
+        self.wait.until(EC.new_window_is_opened)
+        all_windows = self.driver.window_handles
+        self.driver.switch_to.window(all_windows[1])
+
+    def switch_to_window_by_id(self, window_id):
+        self.driver.switch_to.window(window_id)
+
+    def close(self):
+        self.driver.close()
+
     def wait_to_be_clickable(self, *locator):
         self.wait.until(
             EC.element_to_be_clickable(locator),
@@ -62,6 +76,6 @@ class Page:
         current_url = self.driver.current_url
         assert current_url == expected_url, f'"{current_url}" does not match "{expected_url}"'
 
-    def verify_partial_url(self, expected_url):
-        current_url = self.driver.current_url
+    def verify_partial_url(self, current_url):
+        expected_url = self.driver.current_url
         assert current_url in expected_url, f'Partial URL "{current_url}" not found in "{expected_url}"'
