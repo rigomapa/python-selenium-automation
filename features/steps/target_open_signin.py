@@ -1,6 +1,4 @@
-from selenium.webdriver.common.by import By
 from behave import given, when, then
-from time import sleep
 
 
 @given("open Sign In page")
@@ -20,12 +18,22 @@ def press_sign_in_button_ep(context):
 
 @when("User enters email address")
 def enter_email(context):
+    context.app.sign_in_page.enter_wrong_email()
+
+
+@when("user enters incorrect email address")
+def enter_email(context):
     context.app.sign_in_page.enter_email()
 
 
 @when("User enters password")
 def enter_password(context):
     context.app.sign_in_page.enter_password()
+
+
+@when("user enters incorrect password")
+def enter_password(context):
+    context.app.sign_in_page.enter_wrong_password()
 
 
 @when("User presses Sing In button in Sign In form")
@@ -67,3 +75,7 @@ def verify_tc_page_opened(context):
 def close_tc_and_return(context):
     context.app.sign_in_page.close()
     context.app.sign_in_page.switch_to_window_by_id(context.original_window)
+
+@then("verify 'We can't find your account' message is shown")
+def verify_cannot_find_acc(context):
+    context.app.sign_in_page.verify_cannot_find_acc_msg()

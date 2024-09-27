@@ -10,4 +10,3 @@ Feature: Tests for Target's Help page
     And There are 6 boxes under What would you like to do section
     And Manage my target box is present
     And Contact and recalls boxes are present
-

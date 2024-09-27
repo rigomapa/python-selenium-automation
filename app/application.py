@@ -2,6 +2,7 @@ from pages.base_page import Page
 from pages.cart_page import CartPage
 from pages.main_page import MainPage
 from pages.header import Header
+from pages.returns_page import ReturnsPage
 from pages.search_results_page import SearchResultsPage
 from pages.side_panel import SidePanel
 from pages.sign_in_page import SignInPage
@@ -17,3 +18,4 @@ class Application:
         self.cart_page = CartPage(driver)
         self.side_panel = SidePanel(driver)
         self.sign_in_page = SignInPage(driver)
+        self.returns_page = ReturnsPage(driver)

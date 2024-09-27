@@ -27,3 +27,14 @@ Feature: Tests for sign in functionality
     And switch to newly opened window
     Then verify Terms and Conditions page is opened
     And user can close new window and switch back to original
+
+  Scenario: "We can't find your account" message is displayed when user enters incorrect credentials
+    # Given open Sign In page - Sign in URL not working
+    Given Open Target.com
+    When User presses Sign In button
+    And User presses Sing In button on expanding panel
+    Then Sign in form page is displayed
+    When user enters incorrect email address
+    And user enters incorrect password
+    And User presses Sing In button in Sign In form
+    Then verify 'We can't find your account' message is shown
