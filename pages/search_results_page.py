@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from time import sleep
 
 from pages.base_page import Page
 
@@ -13,5 +14,6 @@ class SearchResultsPage(Page):
         assert item in actual_result, f"Item name '{item}' not found in search results."
 
     def click_add_to_cart_button_search(self):
-        self.wait_for_element_to_appear(*self.SEARCH_RESULTS)
-        self.click(*self.ADD_TO_CART_SEARCH)
+        # self.wait_for_element_to_appear(*self.SEARCH_RESULTS)
+        sleep(8)
+        self.wait_to_be_clickable_click(*self.ADD_TO_CART_SEARCH)

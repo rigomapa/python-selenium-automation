@@ -2,6 +2,7 @@
 Feature: Tests for sign in functionality
   # Enter feature description here
 
+  @smoke
   Scenario: Sign In form page is displayed when logged out user selects Sign In
     Given Open Target.com
     When User presses Sign In button
@@ -17,6 +18,7 @@ Feature: Tests for sign in functionality
     And User presses Sing In button in Sign In form
     Then Verify Sign In form disappears
 
+  @smoke
   Scenario: User can open and close Terms and Conditions from Sign In page
     # Given open Sign In page - Sign in URL not working
     Given Open Target.com
